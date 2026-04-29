@@ -3,180 +3,1164 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DisciplineSelf | Design Your Life</title>
-
+<title>DisciplineSelf — Design Your Life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #f5f7fa;
-}
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f0e8;
+    --cream: #faf7f2;
+    --gold: #c8963e;
+    --gold-light: #e8b86d;
+    --rust: #c4522a;
+    --forest: #2d4a3e;
+    --forest-light: #3d6b5a;
+    --slate: #4a5568;
+    --muted: #8a8a8a;
+    --border: #e0d8cc;
+    --health: #2d7d6f;
+    --life: #5b3ea6;
+    --finance: #c8963e;
+    --leisure: #c4522a;
+    --society: #1a6b3c;
+  }
 
-header {
-    background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-h1 { margin: 0; }
+  html { scroll-behavior: smooth; }
 
-.container {
-    padding: 20px;
-}
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
 
-.card {
-    background: white;
-    padding: 20px;
-    margin: 15px 0;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--slate); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.5px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--ink); color: var(--paper); border: none;
+    padding: 10px 24px; font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+    font-weight: 600; letter-spacing: 1px; cursor: pointer; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--forest); }
 
-button {
-    padding: 10px 15px;
-    background: #2c5364;
-    color: white;
-    border: none;
-    border-radius: 5px;
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(200,150,62,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(45,74,62,0.06) 0%, transparent 60%);
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(200,150,62,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,150,62,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 64px 80px 80px;
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 4px;
+    color: var(--gold); text-transform: uppercase; margin-bottom: 24px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    margin-bottom: 32px;
+    color: var(--ink);
+  }
+  .hero-title em {
+    font-style: italic; color: var(--gold);
+    display: block;
+  }
+  .hero-subtitle {
+    font-size: 1.05rem; color: var(--slate); line-height: 1.7;
+    max-width: 440px; margin-bottom: 48px;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; }
+  .btn-primary {
+    background: var(--ink); color: var(--paper);
+    padding: 16px 40px; font-size: 0.9rem; font-weight: 600;
+    letter-spacing: 1px; border: none; cursor: pointer;
+    transition: all 0.25s; text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--forest); transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent; color: var(--ink);
+    padding: 16px 32px; font-size: 0.9rem; font-weight: 500;
+    border: 1.5px solid var(--border); cursor: pointer;
+    transition: all 0.25s; text-decoration: none; display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-right {
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 2; padding: 40px;
+  }
+  .hero-dashboard {
+    background: white; border: 1px solid var(--border);
+    box-shadow: 24px 24px 60px rgba(0,0,0,0.1);
+    padding: 32px; width: 100%; max-width: 460px;
+    transform: rotate(1deg);
+    animation: floatCard 4s ease-in-out infinite;
+  }
+  @keyframes floatCard {
+    0%, 100% { transform: rotate(1deg) translateY(0); }
+    50% { transform: rotate(1deg) translateY(-8px); }
+  }
+  .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .dash-date { font-size: 0.75rem; color: var(--muted); font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
+  .dash-score {
+    background: var(--forest); color: white;
+    padding: 4px 12px; font-size: 0.7rem; font-weight: 600; letter-spacing: 1px;
+  }
+  .dash-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
+  .habit-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .habit-row:last-child { border: none; }
+  .habit-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+  }
+  .habit-label { font-size: 0.82rem; color: var(--slate); flex: 1; }
+  .habit-bar { flex: 1; height: 4px; background: var(--border); position: relative; overflow: hidden; }
+  .habit-bar-fill { height: 100%; border-radius: 2px; transition: width 1s ease; }
+  .habit-check { font-size: 0.7rem; font-weight: 700; color: var(--muted); }
+  .dash-footer { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); display: flex; gap: 16px; }
+  .mini-stat { flex: 1; text-align: center; }
+  .mini-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--gold); }
+  .mini-stat-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* ─── PILLARS ─── */
+  .pillars {
+    padding: 100px 80px;
+    background: var(--ink);
+  }
+  .section-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800;
+    color: var(--paper); line-height: 1.1; margin-bottom: 16px;
+  }
+  .section-title.dark { color: var(--ink); }
+  .section-sub { color: #8a8a8a; font-size: 1rem; max-width: 520px; line-height: 1.7; margin-bottom: 60px; }
+  .pillars-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px;
+  }
+  .pillar-card {
+    padding: 40px 28px;
+    border: 1px solid rgba(255,255,255,0.08);
     cursor: pointer;
-}
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .pillar-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    transform: scaleX(0); transition: transform 0.3s; transform-origin: left;
+  }
+  .pillar-card:hover { transform: translateY(-4px); }
+  .pillar-card:hover::before { transform: scaleX(1); }
+  .pillar-card.health { background: rgba(45,125,111,0.15); }
+  .pillar-card.health::before { background: var(--health); }
+  .pillar-card.health:hover { background: rgba(45,125,111,0.25); }
+  .pillar-card.life { background: rgba(91,62,166,0.15); }
+  .pillar-card.life::before { background: var(--life); }
+  .pillar-card.life:hover { background: rgba(91,62,166,0.25); }
+  .pillar-card.finance { background: rgba(200,150,62,0.15); }
+  .pillar-card.finance::before { background: var(--finance); }
+  .pillar-card.finance:hover { background: rgba(200,150,62,0.25); }
+  .pillar-card.leisure { background: rgba(196,82,42,0.15); }
+  .pillar-card.leisure::before { background: var(--leisure); }
+  .pillar-card.leisure:hover { background: rgba(196,82,42,0.25); }
+  .pillar-card.society { background: rgba(26,107,60,0.15); }
+  .pillar-card.society::before { background: var(--society); }
+  .pillar-card.society:hover { background: rgba(26,107,60,0.25); }
+  .pillar-icon { font-size: 2.2rem; margin-bottom: 16px; }
+  .pillar-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700; color: var(--paper); margin-bottom: 10px;
+  }
+  .pillar-desc { font-size: 0.78rem; color: #9a9a9a; line-height: 1.6; }
+  .pillar-items { margin-top: 16px; list-style: none; }
+  .pillar-items li {
+    font-size: 0.72rem; color: #7a7a7a; padding: 3px 0;
+    padding-left: 12px; position: relative;
+  }
+  .pillar-items li::before { content: '—'; position: absolute; left: 0; opacity: 0.4; }
 
-button:hover {
-    background: #1b3b4a;
-}
+  /* ─── LIFESTYLE CHOOSER ─── */
+  .lifestyle {
+    padding: 100px 80px;
+    background: var(--cream);
+  }
+  .lifestyle-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 60px; }
+  .lifestyle-card {
+    border: 1.5px solid var(--border);
+    overflow: hidden; cursor: pointer;
+    transition: all 0.3s;
+    background: white;
+    position: relative;
+  }
+  .lifestyle-card:hover { border-color: var(--gold); box-shadow: 0 16px 48px rgba(0,0,0,0.08); transform: translateY(-4px); }
+  .lifestyle-banner {
+    height: 160px; display: flex; align-items: flex-end; padding: 24px;
+    position: relative; overflow: hidden;
+  }
+  .lifestyle-banner.teens-boy { background: linear-gradient(135deg, #1a2b4a 0%, #2d4a7a 60%, #3d6bb0 100%); }
+  .lifestyle-banner.teens-girl { background: linear-gradient(135deg, #4a1a2b 0%, #7a2d4a 60%, #b03d6b 100%); }
+  .lifestyle-banner.young-men { background: linear-gradient(135deg, #1a3a2b 0%, #2d6b4a 60%, #3d8b5a 100%); }
+  .lifestyle-banner.young-women { background: linear-gradient(135deg, #3a1a4a 0%, #6b2d7a 60%, #8b3d9b 100%); }
+  .lifestyle-banner.aged-couple { background: linear-gradient(135deg, #3a2a1a 0%, #7a5a2d 60%, #c8963e 100%); }
+  .lifestyle-banner-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 5rem; color: rgba(255,255,255,0.12);
+    position: absolute; right: 16px; top: 16px; line-height: 1;
+  }
+  .lifestyle-banner-emoji { font-size: 2.4rem; position: relative; z-index: 2; }
+  .lifestyle-body { padding: 28px; }
+  .lifestyle-tag {
+    display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; padding: 4px 10px; margin-bottom: 12px;
+    background: var(--border); color: var(--slate);
+  }
+  .lifestyle-name { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; }
+  .lifestyle-desc { font-size: 0.82rem; color: var(--slate); line-height: 1.65; margin-bottom: 20px; }
+  .lifestyle-habits { list-style: none; margin-bottom: 20px; }
+  .lifestyle-habits li {
+    font-size: 0.78rem; color: var(--ink); padding: 6px 0;
+    border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px;
+  }
+  .lifestyle-habits li:last-child { border: none; }
+  .habit-pill {
+    display: inline-block; font-size: 0.62rem; padding: 2px 8px;
+    border-radius: 20px; font-weight: 600; margin-left: auto; flex-shrink: 0;
+  }
+  .pill-health { background: rgba(45,125,111,0.12); color: var(--health); }
+  .pill-life { background: rgba(91,62,166,0.12); color: var(--life); }
+  .pill-finance { background: rgba(200,150,62,0.12); color: #a07020; }
+  .pill-leisure { background: rgba(196,82,42,0.12); color: var(--leisure); }
+  .pill-society { background: rgba(26,107,60,0.12); color: var(--society); }
+  .choose-btn {
+    width: 100%; padding: 12px; background: var(--ink); color: var(--paper);
+    border: none; font-family: 'DM Sans', sans-serif; font-size: 0.82rem;
+    font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .choose-btn:hover { background: var(--forest); }
 
-input, select, textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
+  /* ─── ROUTINE BUILDER ─── */
+  .builder {
+    padding: 100px 80px;
+    background: #f0ebe0;
+  }
+  .builder-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .time-blocks { margin-top: 40px; }
+  .time-row {
+    display: flex; gap: 0; margin-bottom: 2px; position: relative;
+  }
+  .time-label {
+    width: 80px; font-size: 0.7rem; font-weight: 600; color: var(--muted);
+    padding-top: 12px; flex-shrink: 0; letter-spacing: 0.5px;
+  }
+  .time-block {
+    flex: 1; padding: 12px 16px;
+    border-left: 3px solid transparent;
+    transition: all 0.2s; cursor: pointer; background: white;
+  }
+  .time-block:hover { background: var(--paper); }
+  .time-block.health-block { border-color: var(--health); background: rgba(45,125,111,0.04); }
+  .time-block.life-block { border-color: var(--life); background: rgba(91,62,166,0.04); }
+  .time-block.finance-block { border-color: var(--finance); background: rgba(200,150,62,0.04); }
+  .time-block.leisure-block { border-color: var(--leisure); background: rgba(196,82,42,0.04); }
+  .time-block.society-block { border-color: var(--society); background: rgba(26,107,60,0.04); }
+  .time-block-title { font-size: 0.8rem; font-weight: 600; color: var(--ink); }
+  .time-block-sub { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
 
-.section-title {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #2c5364;
-}
+  /* ─── REGISTER ─── */
+  .register {
+    padding: 100px 80px;
+    background: var(--ink);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .register-copy .section-title { color: var(--paper); }
+  .register-copy p { color: #9a9a9a; font-size: 0.95rem; line-height: 1.75; margin-bottom: 32px; }
+  .whatsapp-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(37,211,102,0.12); border: 1px solid rgba(37,211,102,0.3);
+    padding: 10px 20px; color: #25d366; font-size: 0.82rem; font-weight: 600;
+  }
+  .wa-dot { width: 8px; height: 8px; background: #25d366; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.4); } }
+  .register-form { background: white; padding: 48px; }
+  .form-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
+  .form-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 32px; }
+  .form-row { margin-bottom: 20px; }
+  .form-row label { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--slate); margin-bottom: 8px; }
+  .form-row input, .form-row select, .form-row textarea {
+    width: 100%; padding: 12px 16px; border: 1.5px solid var(--border);
+    font-family: 'DM Sans', sans-serif; font-size: 0.85rem; color: var(--ink);
+    background: var(--cream); outline: none; transition: border-color 0.2s;
+    appearance: none;
+  }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus { border-color: var(--gold); }
+  .form-row textarea { height: 80px; resize: none; }
+  .form-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .checkbox-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .checkbox-label {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 0.75rem; font-weight: 500; color: var(--slate); cursor: pointer;
+    padding: 6px 12px; border: 1.5px solid var(--border); background: var(--cream);
+    transition: all 0.2s;
+  }
+  .checkbox-label:hover { border-color: var(--gold); color: var(--ink); }
+  .checkbox-label input { width: auto; }
+  .wa-number-row { display: flex; gap: 0; }
+  .country-code {
+    padding: 12px 14px; border: 1.5px solid var(--border); border-right: none;
+    background: var(--paper); font-size: 0.82rem; font-weight: 600; color: var(--slate);
+    white-space: nowrap;
+  }
+  .wa-number-row input { flex: 1; }
+  .submit-btn {
+    width: 100%; padding: 16px; background: var(--forest); color: white;
+    border: none; font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s; margin-top: 8px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .submit-btn:hover { background: #1a3a2b; }
+  .submit-success {
+    display: none; text-align: center; padding: 40px 0;
+  }
+  .submit-success .big-check { font-size: 3rem; }
+  .submit-success h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin: 12px 0 8px; }
+  .submit-success p { font-size: 0.85rem; color: var(--muted); }
 
-.footer {
-    text-align: center;
-    padding: 15px;
-    background: #2c5364;
-    color: white;
-}
+  /* ─── TESTIMONIALS/STATS ─── */
+  .stats-bar {
+    background: var(--gold); padding: 40px 80px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;
+  }
+  .stat-item { text-align: center; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--ink); line-height: 1; }
+  .stat-label { font-size: 0.75rem; font-weight: 600; color: rgba(0,0,0,0.55); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
 
-.highlight {
-    color: #2c5364;
-    font-weight: bold;
-}
+  /* ─── HOW IT WORKS ─── */
+  .howit {
+    padding: 100px 80px;
+    background: var(--cream);
+  }
+  .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-top: 60px; }
+  .step-card { text-align: center; padding: 0 16px; }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--border);
+    line-height: 1; margin-bottom: 20px;
+  }
+  .step-icon { font-size: 2rem; margin-bottom: 16px; }
+  .step-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+  .step-desc { font-size: 0.82rem; color: var(--slate); line-height: 1.65; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #080808; color: #5a5a5a; padding: 60px 80px 40px;
+  }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 48px; }
+  .footer-brand { }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 3px; color: white; margin-bottom: 12px; }
+  .footer-logo span { color: var(--gold); }
+  .footer-desc { font-size: 0.8rem; line-height: 1.7; margin-bottom: 20px; }
+  .footer-wa {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #25d366; color: white; padding: 10px 20px;
+    font-size: 0.8rem; font-weight: 600; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .footer-wa:hover { opacity: 0.85; }
+  .footer-col h4 { font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #8a8a8a; margin-bottom: 20px; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a { color: #5a5a5a; text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom { border-top: 1px solid #1a1a1a; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 0.75rem; }
+  .footer-legal { display: flex; gap: 24px; }
+  .footer-legal a { color: #4a4a4a; font-size: 0.75rem; text-decoration: none; transition: color 0.2s; }
+  .footer-legal a:hover { color: var(--gold); }
+
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: white; max-width: 580px; width: 90%; max-height: 90vh; overflow-y: auto;
+    padding: 48px; position: relative;
+    animation: slideUp 0.3s ease;
+  }
+  @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .modal-close {
+    position: absolute; top: 16px; right: 20px; font-size: 1.5rem; cursor: pointer;
+    color: var(--muted); background: none; border: none; font-family: 'DM Sans', sans-serif;
+  }
+  .modal-close:hover { color: var(--ink); }
+  .modal-lifestyle-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; font-size: 0.72rem; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .modal-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 800; margin-bottom: 8px; }
+  .modal-desc { font-size: 0.85rem; color: var(--slate); line-height: 1.7; margin-bottom: 28px; }
+  .modal-section-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .modal-routine-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+  .routine-item {
+    padding: 12px 14px; border: 1px solid var(--border); background: var(--cream);
+  }
+  .routine-time { font-size: 0.65rem; font-weight: 700; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; margin-bottom: 4px; }
+  .routine-act { font-size: 0.8rem; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+  .routine-tag { font-size: 0.65rem; color: var(--muted); }
+  .modal-btn {
+    width: 100%; padding: 14px; background: var(--forest); color: white;
+    border: none; font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+    font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .modal-btn:hover { background: #1a3a2b; }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: all 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 80px 40px; }
+    .pillars { padding: 60px 24px; }
+    .pillars-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .lifestyle { padding: 60px 24px; }
+    .lifestyle-grid { grid-template-columns: 1fr; gap: 24px; }
+    .builder { padding: 60px 24px; }
+    .builder-inner { grid-template-columns: 1fr; }
+    .register { padding: 60px 24px; grid-template-columns: 1fr; }
+    .stats-bar { padding: 40px 24px; grid-template-columns: repeat(2, 1fr); }
+    .howit { padding: 60px 24px; }
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    footer { padding: 40px 24px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  }
 </style>
 </head>
-
 <body>
 
-<header>
-    <h1>DisciplineSelf</h1>
-    <p>Design Your Routine. Design Your Life.</p>
-</header>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Discipline<span>Self</span></a>
+  <ul class="nav-links">
+    <li><a href="#pillars">Five Pillars</a></li>
+    <li><a href="#lifestyle">Lifestyle</a></li>
+    <li><a href="#builder">Daily Routine</a></li>
+    <li><a href="#howit">How It Works</a></li>
+  </ul>
+  <button class="nav-cta" onclick="scrollToRegister()">GET STARTED FREE</button>
+</nav>
 
-<div class="container">
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">disciplineself.com</div>
+    <h1 class="hero-title">Design a Life<em>Worth Living.</em></h1>
+    <p class="hero-subtitle">Commit to a routine that balances health, life, finances, leisure, and service. Tailored for every stage of life. Delivered to your WhatsApp every morning.</p>
+    <div class="hero-actions">
+      <a href="#lifestyle" class="btn-primary">CHOOSE YOUR LIFESTYLE</a>
+      <a href="#howit" class="btn-secondary">See How It Works</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-dashboard">
+      <div class="dash-header">
+        <span class="dash-date">TODAY · WEDNESDAY</span>
+        <span class="dash-score">STREAK: 14 DAYS</span>
+      </div>
+      <div class="dash-title">Morning Routine Progress</div>
+      <div class="habit-row">
+        <div class="habit-dot" style="background:var(--health)"></div>
+        <div class="habit-label">Morning Walk — 30 min</div>
+        <div class="habit-bar"><div class="habit-bar-fill" style="width:100%;background:var(--health)"></div></div>
+        <div class="habit-check">✓</div>
+      </div>
+      <div class="habit-row">
+        <div class="habit-dot" style="background:var(--life)"></div>
+        <div class="habit-label">Goal Journaling</div>
+        <div class="habit-bar"><div class="habit-bar-fill" style="width:100%;background:var(--life)"></div></div>
+        <div class="habit-check">✓</div>
+      </div>
+      <div class="habit-row">
+        <div class="habit-dot" style="background:var(--finance)"></div>
+        <div class="habit-label">SIP ₹500 invested</div>
+        <div class="habit-bar"><div class="habit-bar-fill" style="width:100%;background:var(--finance)"></div></div>
+        <div class="habit-check">✓</div>
+      </div>
+      <div class="habit-row">
+        <div class="habit-dot" style="background:var(--leisure)"></div>
+        <div class="habit-label">Reading — 20 min</div>
+        <div class="habit-bar"><div class="habit-bar-fill" style="width:60%;background:var(--leisure)"></div></div>
+        <div class="habit-check">—</div>
+      </div>
+      <div class="habit-row">
+        <div class="habit-dot" style="background:var(--society)"></div>
+        <div class="habit-label">Community volunteer</div>
+        <div class="habit-bar"><div class="habit-bar-fill" style="width:0%;background:var(--society)"></div></div>
+        <div class="habit-check">○</div>
+      </div>
+      <div class="dash-footer">
+        <div class="mini-stat"><div class="mini-stat-num">78%</div><div class="mini-stat-label">Today</div></div>
+        <div class="mini-stat"><div class="mini-stat-num">14</div><div class="mini-stat-label">Streak</div></div>
+        <div class="mini-stat"><div class="mini-stat-num">5</div><div class="mini-stat-label">Pillars</div></div>
+        <div class="mini-stat"><div class="mini-stat-num">📱</div><div class="mini-stat-label">WA Alert</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- ABOUT -->
-<div class="card">
-    <div class="section-title">Why DisciplineSelf?</div>
-    <p>
-        Build your life through structured discipline:
-        <span class="highlight">Plan Health</span>,
-        <span class="highlight">Plan Life</span>,
-        <span class="highlight">Plan Finance</span>,
-        <span class="highlight">Plan Leisure</span>,
-        <span class="highlight">Serve Society</span>
-    </p>
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">12,800+</div><div class="stat-label">Active Members</div></div>
+  <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Life Pillars</div></div>
+  <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Lifestyle Profiles</div></div>
+  <div class="stat-item"><div class="stat-num">Daily</div><div class="stat-label">WhatsApp Nudges</div></div>
 </div>
 
-<!-- USER CATEGORY -->
-<div class="card">
-    <div class="section-title">Choose Your Lifestyle</div>
+<!-- PILLARS -->
+<section class="pillars" id="pillars">
+  <div class="section-eyebrow">The Framework</div>
+  <h2 class="section-title">Five Pillars of a<br>Disciplined Life</h2>
+  <p class="section-sub">Every aspect of a fulfilling life maps to one of five pillars. Build habits across all five, and watch your whole life transform.</p>
+  <div class="pillars-grid reveal">
+    <div class="pillar-card health">
+      <div class="pillar-icon">🌿</div>
+      <div class="pillar-name">Plan Health</div>
+      <div class="pillar-desc">Your body is your first asset. Protect and grow it daily.</div>
+      <ul class="pillar-items">
+        <li>Daily movement & exercise</li>
+        <li>Nutrition & meal planning</li>
+        <li>Sleep hygiene</li>
+        <li>Mental wellness</li>
+        <li>Preventive check-ups</li>
+      </ul>
+    </div>
+    <div class="pillar-card life">
+      <div class="pillar-icon">🎯</div>
+      <div class="pillar-name">Plan Life</div>
+      <div class="pillar-desc">Clarity of purpose drives every other pillar forward.</div>
+      <ul class="pillar-items">
+        <li>Goal setting & vision board</li>
+        <li>Skill development</li>
+        <li>Relationships & family</li>
+        <li>Career milestones</li>
+        <li>Personal growth</li>
+      </ul>
+    </div>
+    <div class="pillar-card finance">
+      <div class="pillar-icon">💰</div>
+      <div class="pillar-name">Plan Finance</div>
+      <div class="pillar-desc">Financial discipline is freedom in disguise. Start today.</div>
+      <ul class="pillar-items">
+        <li>Budgeting & expense tracking</li>
+        <li>Savings & emergency fund</li>
+        <li>Investments & SIP</li>
+        <li>Insurance & protection</li>
+        <li>Debt management</li>
+      </ul>
+    </div>
+    <div class="pillar-card leisure">
+      <div class="pillar-icon">🎨</div>
+      <div class="pillar-name">Plan Leisure</div>
+      <div class="pillar-desc">Rest is not laziness. It's the fuel for sustained excellence.</div>
+      <ul class="pillar-items">
+        <li>Hobbies & creative outlets</li>
+        <li>Travel & experiences</li>
+        <li>Sports & recreation</li>
+        <li>Entertainment balance</li>
+        <li>Digital detox time</li>
+      </ul>
+    </div>
+    <div class="pillar-card society">
+      <div class="pillar-icon">🤝</div>
+      <div class="pillar-name">Plan for Society</div>
+      <div class="pillar-desc">A life of meaning gives back to the world around it.</div>
+      <ul class="pillar-items">
+        <li>Volunteering & community</li>
+        <li>Mentoring others</li>
+        <li>Environmental responsibility</li>
+        <li>Charitable giving</li>
+        <li>Civic participation</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-    <select id="userType">
-        <option value="">Select Category</option>
-        <option>Teen (Boy)</option>
-        <option>Teen (Girl)</option>
-        <option>Young Professional (Man)</option>
-        <option>Young Professional (Woman)</option>
-        <option>Retired (Couple)</option>
-    </select>
-</div>
+<!-- LIFESTYLE CHOOSER -->
+<section class="lifestyle" id="lifestyle">
+  <div class="section-eyebrow">Choose Your Profile</div>
+  <h2 class="section-title dark">Routines Designed<br>For Your Life Stage</h2>
+  <p class="section-sub" style="color:var(--slate)">No two lives are the same. Pick the lifestyle closest to yours and get a tailored daily routine across all five pillars.</p>
+  <div class="lifestyle-grid reveal">
 
-<!-- ROUTINE BUILDER -->
-<div class="card">
-    <div class="section-title">Design Your Daily Routine</div>
+    <!-- TEEN BOY -->
+    <div class="lifestyle-card" onclick="openModal('teen-boy')">
+      <div class="lifestyle-banner teens-boy">
+        <div class="lifestyle-banner-num">01</div>
+        <div class="lifestyle-banner-emoji">🧑‍🎓</div>
+      </div>
+      <div class="lifestyle-body">
+        <span class="lifestyle-tag">Teens · Boy · Age 13–19</span>
+        <div class="lifestyle-name">The Ambitious Teen</div>
+        <p class="lifestyle-desc">Build the habits now that the 30-year-old you will thank you for. School, sports, studies, and character — all in balance.</p>
+        <ul class="lifestyle-habits">
+          <li>Morning workout & sports <span class="habit-pill pill-health">Health</span></li>
+          <li>Study schedule + skill-learning <span class="habit-pill pill-life">Life</span></li>
+          <li>Save ₹50/day pocket money <span class="habit-pill pill-finance">Finance</span></li>
+          <li>Reading 20 min before bed <span class="habit-pill pill-leisure">Leisure</span></li>
+          <li>Help at home / community <span class="habit-pill pill-society">Society</span></li>
+        </ul>
+        <button class="choose-btn">VIEW FULL ROUTINE →</button>
+      </div>
+    </div>
 
-    <label>Health Plan</label>
-    <textarea placeholder="Workout, Diet, Sleep..."></textarea>
+    <!-- TEEN GIRL -->
+    <div class="lifestyle-card" onclick="openModal('teen-girl')">
+      <div class="lifestyle-banner teens-girl">
+        <div class="lifestyle-banner-num">02</div>
+        <div class="lifestyle-banner-emoji">👩‍🎓</div>
+      </div>
+      <div class="lifestyle-body">
+        <span class="lifestyle-tag">Teens · Girl · Age 13–19</span>
+        <div class="lifestyle-name">The Empowered Teen</div>
+        <p class="lifestyle-desc">Confidence, creativity, and care. Balance academics with self-expression, physical wellness, and building your unique identity.</p>
+        <ul class="lifestyle-habits">
+          <li>Yoga / dance / sports daily <span class="habit-pill pill-health">Health</span></li>
+          <li>Journaling + future visioning <span class="habit-pill pill-life">Life</span></li>
+          <li>Basic money management <span class="habit-pill pill-finance">Finance</span></li>
+          <li>Art, music or creative hobby <span class="habit-pill pill-leisure">Leisure</span></li>
+          <li>Awareness & social causes <span class="habit-pill pill-society">Society</span></li>
+        </ul>
+        <button class="choose-btn">VIEW FULL ROUTINE →</button>
+      </div>
+    </div>
 
-    <label>Life Goals</label>
-    <textarea placeholder="Career, Learning, Personal Growth..."></textarea>
+    <!-- YOUNG MEN -->
+    <div class="lifestyle-card" onclick="openModal('young-men')">
+      <div class="lifestyle-banner young-men">
+        <div class="lifestyle-banner-num">03</div>
+        <div class="lifestyle-banner-emoji">👨‍💼</div>
+      </div>
+      <div class="lifestyle-body">
+        <span class="lifestyle-tag">Young Professional · Men · Age 22–35</span>
+        <div class="lifestyle-name">The Driven Professional</div>
+        <p class="lifestyle-desc">Career momentum without burning out. Build wealth, health, and relationships simultaneously — with a disciplined daily system.</p>
+        <ul class="lifestyle-habits">
+          <li>Gym + protein + sleep tracking <span class="habit-pill pill-health">Health</span></li>
+          <li>Career goals + side skill daily <span class="habit-pill pill-life">Life</span></li>
+          <li>SIP + budget review weekly <span class="habit-pill pill-finance">Finance</span></li>
+          <li>1 hobby + weekend adventure <span class="habit-pill pill-leisure">Leisure</span></li>
+          <li>Mentor a junior monthly <span class="habit-pill pill-society">Society</span></li>
+        </ul>
+        <button class="choose-btn">VIEW FULL ROUTINE →</button>
+      </div>
+    </div>
 
-    <label>Finance Plan</label>
-    <textarea placeholder="Savings, Investments, Budget..."></textarea>
+    <!-- YOUNG WOMEN -->
+    <div class="lifestyle-card" onclick="openModal('young-women')">
+      <div class="lifestyle-banner young-women">
+        <div class="lifestyle-banner-num">04</div>
+        <div class="lifestyle-banner-emoji">👩‍💼</div>
+      </div>
+      <div class="lifestyle-body">
+        <span class="lifestyle-tag">Young Professional · Women · Age 22–35</span>
+        <div class="lifestyle-name">The Grounded Achiever</div>
+        <p class="lifestyle-desc">Navigate ambition and wellbeing with grace. A routine that powers your career, fuels your creativity, and nourishes every part of you.</p>
+        <ul class="lifestyle-habits">
+          <li>Morning walk + mindfulness <span class="habit-pill pill-health">Health</span></li>
+          <li>Career vision + networking <span class="habit-pill pill-life">Life</span></li>
+          <li>Women's investment basics <span class="habit-pill pill-finance">Finance</span></li>
+          <li>Creative outlet + self-care <span class="habit-pill pill-leisure">Leisure</span></li>
+          <li>Women's community support <span class="habit-pill pill-society">Society</span></li>
+        </ul>
+        <button class="choose-btn">VIEW FULL ROUTINE →</button>
+      </div>
+    </div>
 
-    <label>Leisure Plan</label>
-    <textarea placeholder="Travel, Hobbies, Relaxation..."></textarea>
+    <!-- AGED COUPLE -->
+    <div class="lifestyle-card" onclick="openModal('aged-couple')" style="grid-column: span 2;">
+      <div style="display:grid; grid-template-columns:1fr 1fr;">
+        <div class="lifestyle-banner aged-couple" style="height:200px;">
+          <div class="lifestyle-banner-num">05</div>
+          <div class="lifestyle-banner-emoji">👴👵</div>
+        </div>
+        <div class="lifestyle-body">
+          <span class="lifestyle-tag">Aged & Retired · Couple · 55+</span>
+          <div class="lifestyle-name">The Graceful Years</div>
+          <p class="lifestyle-desc">Retirement is not the end — it's the beginning of your best chapter. Health, wisdom, togetherness, and leaving a lasting legacy.</p>
+          <ul class="lifestyle-habits">
+            <li>Morning walk, yoga, pranayama <span class="habit-pill pill-health">Health</span></li>
+            <li>Legacy projects + grandchildren time <span class="habit-pill pill-life">Life</span></li>
+            <li>Retirement corpus review <span class="habit-pill pill-finance">Finance</span></li>
+            <li>Travel + cultural activities <span class="habit-pill pill-leisure">Leisure</span></li>
+            <li>Seva, mentoring, temple/community <span class="habit-pill pill-society">Society</span></li>
+          </ul>
+          <button class="choose-btn">VIEW FULL ROUTINE →</button>
+        </div>
+      </div>
+    </div>
 
-    <label>Society Contribution</label>
-    <textarea placeholder="Charity, Volunteering, Helping Others..."></textarea>
+  </div>
+</section>
 
-</div>
+<!-- ROUTINE BUILDER PREVIEW -->
+<section class="builder" id="builder">
+  <div class="section-eyebrow">Your Daily Blueprint</div>
+  <h2 class="section-title dark" style="margin-bottom:12px;">A Sample Day,<br>Fully Designed</h2>
+  <p class="section-sub" style="color:var(--slate); margin-bottom:0;">Here's what a structured day looks like for a Young Professional. Every block maps to one of the Five Pillars.</p>
+  <div class="builder-inner">
+    <div>
+      <div class="time-blocks reveal">
+        <div class="time-row"><div class="time-label">5:30 AM</div><div class="time-block health-block"><div class="time-block-title">🌿 Morning Movement</div><div class="time-block-sub">30 min gym or outdoor run — Health Pillar</div></div></div>
+        <div class="time-row"><div class="time-label">6:15 AM</div><div class="time-block life-block"><div class="time-block-title">🎯 Goal Journaling</div><div class="time-block-sub">15 min — review goals, set daily intention — Life Pillar</div></div></div>
+        <div class="time-row"><div class="time-label">7:00 AM</div><div class="time-block health-block"><div class="time-block-title">🥗 Mindful Breakfast</div><div class="time-block-sub">Protein-rich, no screen eating — Health Pillar</div></div></div>
+        <div class="time-row"><div class="time-label">9:00 AM</div><div class="time-block life-block"><div class="time-block-title">💼 Deep Work Block</div><div class="time-block-sub">Career/study — 90 min focused work — Life Pillar</div></div></div>
+        <div class="time-row"><div class="time-label">1:00 PM</div><div class="time-block finance-block"><div class="time-block-title">💰 Finance Check</div><div class="time-block-sub">Review expenses, confirm SIP — Finance Pillar</div></div></div>
+        <div class="time-row"><div class="time-label">6:30 PM</div><div class="time-block leisure-block"><div class="time-block-title">🎨 Leisure Hour</div><div class="time-block-sub">Hobby / sport / creative activity — Leisure Pillar</div></div></div>
+        <div class="time-row"><div class="time-label">8:00 PM</div><div class="time-block society-block"><div class="time-block-title">🤝 Give Back</div><div class="time-block-sub">Volunteer call / community message — Society Pillar</div></div></div>
+        <div class="time-row"><div class="time-label">9:30 PM</div><div class="time-block health-block"><div class="time-block-title">😴 Wind Down</div><div class="time-block-sub">No screen 30 min before sleep — Health Pillar</div></div></div>
+      </div>
+    </div>
+    <div style="padding-top:40px;">
+      <div style="background:white; padding:36px; border:1px solid var(--border);">
+        <div style="font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Daily Pillar Coverage</div>
+        <div style="margin-bottom:16px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-size:0.82rem;font-weight:600;">🌿 Health</span><span style="font-size:0.75rem;color:var(--muted);">3 blocks</span></div>
+          <div style="height:6px;background:var(--border);"><div style="height:100%;width:75%;background:var(--health);"></div></div>
+        </div>
+        <div style="margin-bottom:16px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-size:0.82rem;font-weight:600;">🎯 Life</span><span style="font-size:0.75rem;color:var(--muted);">2 blocks</span></div>
+          <div style="height:6px;background:var(--border);"><div style="height:100%;width:55%;background:var(--life);"></div></div>
+        </div>
+        <div style="margin-bottom:16px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-size:0.82rem;font-weight:600;">💰 Finance</span><span style="font-size:0.75rem;color:var(--muted);">1 block</span></div>
+          <div style="height:6px;background:var(--border);"><div style="height:100%;width:30%;background:var(--finance);"></div></div>
+        </div>
+        <div style="margin-bottom:16px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-size:0.82rem;font-weight:600;">🎨 Leisure</span><span style="font-size:0.75rem;color:var(--muted);">1 block</span></div>
+          <div style="height:6px;background:var(--border);"><div style="height:100%;width:30%;background:var(--leisure);"></div></div>
+        </div>
+        <div style="margin-bottom:24px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-size:0.82rem;font-weight:600;">🤝 Society</span><span style="font-size:0.75rem;color:var(--muted);">1 block</span></div>
+          <div style="height:6px;background:var(--border);"><div style="height:100%;width:25%;background:var(--society);"></div></div>
+        </div>
+        <div style="background:var(--ink);color:white;padding:20px;text-align:center;margin-bottom:20px;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold);">8 HOURS</div>
+          <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:#9a9a9a;">Purposeful activity per day</div>
+        </div>
+        <div style="font-size:0.78rem;color:var(--slate);line-height:1.7;border-top:1px solid var(--border);padding-top:16px;">
+          <strong>📱 WhatsApp Notification</strong><br>
+          You'll receive a personalized morning reminder and evening reflection prompt on WhatsApp every day.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- RECOMMENDATIONS -->
-<div class="card">
-    <div class="section-title">Suggested Plans</div>
+<!-- HOW IT WORKS -->
+<section class="howit" id="howit">
+  <div class="section-eyebrow">The Process</div>
+  <h2 class="section-title dark">Four Steps to a<br>Disciplined Life</h2>
+  <div class="steps-grid reveal">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-icon">👤</div>
+      <div class="step-title">Choose Your Profile</div>
+      <p class="step-desc">Select the lifestyle that matches your age group and situation — teen, young professional, or retired couple.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-icon">📋</div>
+      <div class="step-title">Get Your Routine</div>
+      <p class="step-desc">Receive a personalised daily schedule covering all five life pillars, adapted to your specific goals and life stage.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-icon">📱</div>
+      <div class="step-title">Register on WhatsApp</div>
+      <p class="step-desc">Enter your WhatsApp number and receive daily morning reminders and evening check-ins directly in your chat.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <div class="step-icon">🔥</div>
+      <div class="step-title">Build Your Streak</div>
+      <p class="step-desc">Track consistency, build momentum, and watch your discipline compound over weeks and months into a transformed life.</p>
+    </div>
+  </div>
+</section>
 
-    <ul>
-        <li><b>Teens:</b> Study discipline, sports, digital detox, skill learning</li>
-        <li><b>Young Professionals:</b> Career growth, financial planning, networking</li>
-        <li><b>Retired Couples:</b> Health care, travel, mentoring, social work</li>
-    </ul>
-</div>
+<!-- REGISTER -->
+<section class="register" id="register">
+  <div class="register-copy">
+    <div class="section-eyebrow">Join Today — Free</div>
+    <h2 class="section-title">Start Your<br>Discipline Journey</h2>
+    <p>Register now to get your personalised daily routine and begin receiving morning nudges on WhatsApp. It takes less than 2 minutes.</p>
+    <div class="whatsapp-badge">
+      <div class="wa-dot"></div>
+      DAILY WHATSAPP REMINDERS ACTIVE
+    </div>
+    <br><br>
+    <div style="color:#7a7a7a;font-size:0.8rem;line-height:1.8;">
+      ✅ &nbsp;Free forever — no credit card needed<br>
+      ✅ &nbsp;Personalised to your lifestyle<br>
+      ✅ &nbsp;WhatsApp morning & evening nudges<br>
+      ✅ &nbsp;All five life pillars covered<br>
+      ✅ &nbsp;Unsubscribe any time
+    </div>
+  </div>
+  <div class="register-form" id="register-form-wrap">
+    <div id="form-main">
+      <div class="form-title">Create Your Account</div>
+      <div class="form-sub">Fill in your details to receive your personalised routine</div>
+      <div class="form-grid2">
+        <div class="form-row">
+          <label>First Name</label>
+          <input type="text" id="fname" placeholder="e.g. Rohan" />
+        </div>
+        <div class="form-row">
+          <label>Last Name</label>
+          <input type="text" id="lname" placeholder="e.g. Mehta" />
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="you@example.com" />
+      </div>
+      <div class="form-row">
+        <label>WhatsApp Number</label>
+        <div class="wa-number-row">
+          <div class="country-code">+91 🇮🇳</div>
+          <input type="tel" id="whatsapp" placeholder="98765 43210" />
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Lifestyle Profile</label>
+        <select id="profile">
+          <option value="">— Select your profile —</option>
+          <option value="teen-boy">Teen Boy (13–19)</option>
+          <option value="teen-girl">Teen Girl (13–19)</option>
+          <option value="young-men">Young Professional Man (22–35)</option>
+          <option value="young-women">Young Professional Woman (22–35)</option>
+          <option value="aged-couple">Aged / Retired Couple (55+)</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Life Pillars to Focus On</label>
+        <div class="checkbox-row">
+          <label class="checkbox-label"><input type="checkbox" name="pillars" value="health" checked /> 🌿 Health</label>
+          <label class="checkbox-label"><input type="checkbox" name="pillars" value="life" checked /> 🎯 Life</label>
+          <label class="checkbox-label"><input type="checkbox" name="pillars" value="finance" /> 💰 Finance</label>
+          <label class="checkbox-label"><input type="checkbox" name="pillars" value="leisure" /> 🎨 Leisure</label>
+          <label class="checkbox-label"><input type="checkbox" name="pillars" value="society" /> 🤝 Society</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>One Life Goal (optional)</label>
+        <textarea id="goal" placeholder="e.g. Run a half marathon by December, save ₹5L this year..."></textarea>
+      </div>
+      <div class="form-row">
+        <label>WhatsApp Reminder Time</label>
+        <select id="reminder-time">
+          <option value="5:30 AM">5:30 AM — Early Riser</option>
+          <option value="6:00 AM">6:00 AM — Morning Person</option>
+          <option value="6:30 AM" selected>6:30 AM — Balanced Start</option>
+          <option value="7:00 AM">7:00 AM — Standard</option>
+          <option value="8:00 AM">8:00 AM — Late Starter</option>
+        </select>
+      </div>
+      <button class="submit-btn" onclick="handleRegister()">
+        <span>📱</span> START MY DISCIPLINE JOURNEY
+      </button>
+    </div>
+    <div class="submit-success" id="success-msg">
+      <div class="big-check">✅</div>
+      <h3 id="success-name">Welcome, Champion!</h3>
+      <p id="success-detail">Your routine is ready. Check WhatsApp for your first morning nudge tomorrow at 6:30 AM.</p>
+      <br>
+      <div style="background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.2);padding:16px;font-size:0.8rem;color:#1a7a3a;line-height:1.7;">
+        <strong>📱 What happens next:</strong><br>
+        You'll receive a WhatsApp message shortly to confirm your subscription. Reply <strong>YES</strong> to activate your daily reminders.
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- REGISTRATION -->
-<div class="card">
-    <div class="section-title">Register & Get WhatsApp Routine</div>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">Discipline<span>Self</span></div>
+      <p class="footer-desc">Building disciplined, purposeful lives — one daily habit at a time. Commit to your routine. Transform your life.</p>
+      <a href="https://wa.me/919876543210" class="footer-wa">📱 Chat on WhatsApp</a>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#pillars">Five Pillars</a></li>
+        <li><a href="#lifestyle">Lifestyle Profiles</a></li>
+        <li><a href="#builder">Daily Routine</a></li>
+        <li><a href="#howit">How It Works</a></li>
+        <li><a href="#register">Register Free</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Lifestyle</h4>
+      <ul>
+        <li><a href="#" onclick="openModal('teen-boy')">Teen Boy</a></li>
+        <li><a href="#" onclick="openModal('teen-girl')">Teen Girl</a></li>
+        <li><a href="#" onclick="openModal('young-men')">Young Professional ♂</a></li>
+        <li><a href="#" onclick="openModal('young-women')">Young Professional ♀</a></li>
+        <li><a href="#" onclick="openModal('aged-couple')">Retired Couple</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Mission</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 DisciplineSelf.com — All rights reserved</div>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">WhatsApp Opt-out</a>
+    </div>
+  </div>
+</footer>
 
-    <form onsubmit="sendWhatsApp(); return false;">
-        <input type="text" id="name" placeholder="Your Name" required>
-        <input type="tel" id="phone" placeholder="WhatsApp Number (with country code)" required>
-        <button type="submit">Register & Notify</button>
-    </form>
-</div>
-
-</div>
-
-<div class="footer">
-    © 2026 DisciplineSelf.com | Build Discipline, Build Life
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal-inner">
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <div id="modal-content"></div>
+  </div>
 </div>
 
 <script>
-function sendWhatsApp() {
-    let name = document.getElementById("name").value;
-    let phone = document.getElementById("phone").value;
+const lifestyleData = {
+  'teen-boy': {
+    emoji: '🧑‍🎓', label: 'Teen Boy · Age 13–19',
+    color: '#2d4a7a', bgLight: 'rgba(45,74,122,0.08)',
+    title: 'The Ambitious Teen — Full Routine',
+    desc: 'This routine builds the foundation for success. Academics, athletics, money sense, and character — developed in parallel from the start.',
+    routine: [
+      { time: '5:45 AM', act: 'Morning workout / sports practice', tag: '🌿 Health' },
+      { time: '7:00 AM', act: 'Healthy breakfast + vitamins', tag: '🌿 Health' },
+      { time: '8:00 AM', act: 'School / college — full focus', tag: '🎯 Life' },
+      { time: '4:00 PM', act: 'Self-study block (1.5 hrs)', tag: '🎯 Life' },
+      { time: '5:30 PM', act: 'Skill learning (coding/music/art)', tag: '🎯 Life' },
+      { time: '6:30 PM', act: 'Save ₹50 from pocket money', tag: '💰 Finance' },
+      { time: '7:00 PM', act: 'Reading 30 min (non-textbook)', tag: '🎨 Leisure' },
+      { time: '8:00 PM', act: 'Help at home / community task', tag: '🤝 Society' },
+      { time: '9:30 PM', act: 'Screen off — sleep by 10 PM', tag: '🌿 Health' },
+    ]
+  },
+  'teen-girl': {
+    emoji: '👩‍🎓', label: 'Teen Girl · Age 13–19',
+    color: '#7a2d4a', bgLight: 'rgba(122,45,74,0.08)',
+    title: 'The Empowered Teen — Full Routine',
+    desc: 'Express yourself, build your mind, and care for your body — all with intention. This routine grows your confidence from the inside out.',
+    routine: [
+      { time: '6:00 AM', act: 'Yoga / dance / morning stretch', tag: '🌿 Health' },
+      { time: '6:30 AM', act: 'Gratitude & journaling', tag: '🎯 Life' },
+      { time: '7:00 AM', act: 'Nutritious breakfast', tag: '🌿 Health' },
+      { time: '8:00 AM', act: 'School / college with intention', tag: '🎯 Life' },
+      { time: '4:30 PM', act: 'Homework + academic focus', tag: '🎯 Life' },
+      { time: '6:00 PM', act: 'Creative hobby (art, music, writing)', tag: '🎨 Leisure' },
+      { time: '7:00 PM', act: 'Note monthly savings goal', tag: '💰 Finance' },
+      { time: '8:00 PM', act: 'Awareness content / social cause action', tag: '🤝 Society' },
+      { time: '9:30 PM', act: 'Skincare routine + 8 hrs sleep', tag: '🌿 Health' },
+    ]
+  },
+  'young-men': {
+    emoji: '👨‍💼', label: 'Young Professional · Men · 22–35',
+    color: '#2d6b4a', bgLight: 'rgba(45,107,74,0.08)',
+    title: 'The Driven Professional — Full Routine',
+    desc: 'Build wealth, health, and a career simultaneously. This routine is engineered for peak output without burning out.',
+    routine: [
+      { time: '5:30 AM', act: 'Gym / run — 45 min', tag: '🌿 Health' },
+      { time: '6:30 AM', act: 'High-protein breakfast + planning', tag: '🌿 Health' },
+      { time: '7:00 AM', act: 'Morning goals review + affirmations', tag: '🎯 Life' },
+      { time: '9:00 AM', act: 'Deep work — career / business', tag: '🎯 Life' },
+      { time: '1:00 PM', act: 'Check budget / SIP / investment', tag: '💰 Finance' },
+      { time: '6:30 PM', act: 'Sport / hobby / social activity', tag: '🎨 Leisure' },
+      { time: '8:00 PM', act: 'Mentoring / community involvement', tag: '🤝 Society' },
+      { time: '9:00 PM', act: 'Weekly finance review (Sunday)', tag: '💰 Finance' },
+      { time: '10:00 PM', act: 'Wind down + sleep tracking', tag: '🌿 Health' },
+    ]
+  },
+  'young-women': {
+    emoji: '👩‍💼', label: 'Young Professional · Women · 22–35',
+    color: '#6b2d7a', bgLight: 'rgba(107,45,122,0.08)',
+    title: 'The Grounded Achiever — Full Routine',
+    desc: 'Ambition and wellbeing are not opposites — this routine proves it. Designed to fuel your career while keeping you rooted in what matters.',
+    routine: [
+      { time: '6:00 AM', act: 'Morning walk / yoga — 30 min', tag: '🌿 Health' },
+      { time: '6:45 AM', act: 'Mindfulness + journal entry', tag: '🎯 Life' },
+      { time: '7:15 AM', act: 'Balanced breakfast — no rush', tag: '🌿 Health' },
+      { time: '9:00 AM', act: 'Career / deep work block', tag: '🎯 Life' },
+      { time: '1:00 PM', act: 'Review women\'s investment portfolio', tag: '💰 Finance' },
+      { time: '6:00 PM', act: 'Self-care / creative outlet', tag: '🎨 Leisure' },
+      { time: '7:30 PM', act: 'Networking / women community support', tag: '🤝 Society' },
+      { time: '9:00 PM', act: 'Monthly savings goal check', tag: '💰 Finance' },
+      { time: '10:00 PM', act: 'Digital detox + sleep routine', tag: '🌿 Health' },
+    ]
+  },
+  'aged-couple': {
+    emoji: '👴👵', label: 'Aged & Retired Couple · 55+',
+    color: '#7a5a2d', bgLight: 'rgba(122,90,45,0.08)',
+    title: 'The Graceful Years — Full Routine',
+    desc: 'Your best chapter begins now. This routine is crafted for longevity, peace, togetherness, and the joy of giving back.',
+    routine: [
+      { time: '6:00 AM', act: 'Morning walk together + pranayama', tag: '🌿 Health' },
+      { time: '7:00 AM', act: 'Light nutritious breakfast', tag: '🌿 Health' },
+      { time: '8:00 AM', act: 'Spiritual practice / devotion', tag: '🎯 Life' },
+      { time: '10:00 AM', act: 'Hobby / gardening / learning', tag: '🎨 Leisure' },
+      { time: '12:00 PM', act: 'Review monthly corpus / expenses', tag: '💰 Finance' },
+      { time: '3:00 PM', act: 'Rest / nap — essential recovery', tag: '🌿 Health' },
+      { time: '5:00 PM', act: 'Evening walk + community seva', tag: '🤝 Society' },
+      { time: '7:00 PM', act: 'Family time / grandchildren calls', tag: '🎯 Life' },
+      { time: '8:30 PM', act: 'Cultural activity / light reading', tag: '🎨 Leisure' },
+      { time: '9:30 PM', act: 'Early sleep — 8 hours essential', tag: '🌿 Health' },
+    ]
+  }
+};
 
-    let message = `Hello ${name}, welcome to DisciplineSelf!
-Your daily routine commitment starts today.
-
-Plan:
-Health | Life | Finance | Leisure | Society
-
-Stay Disciplined.`;
-
-    let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
-
-    window.open(url, '_blank');
+function openModal(type) {
+  const d = lifestyleData[type];
+  if (!d) return;
+  const grid = d.routine.map(r => `
+    <div class="routine-item">
+      <div class="routine-time">${r.time}</div>
+      <div class="routine-act">${r.act}</div>
+      <div class="routine-tag">${r.tag}</div>
+    </div>
+  `).join('');
+  document.getElementById('modal-content').innerHTML = `
+    <div class="modal-lifestyle-badge" style="background:${d.bgLight};color:${d.color};">${d.emoji} ${d.label}</div>
+    <div class="modal-title">${d.title}</div>
+    <div class="modal-desc">${d.desc}</div>
+    <div class="modal-section-title">SAMPLE DAILY SCHEDULE</div>
+    <div class="modal-routine-grid">${grid}</div>
+    <button class="modal-btn" onclick="closeModalBtn();scrollToRegister();">📱 GET THIS ROUTINE ON WHATSAPP</button>
+  `;
+  document.getElementById('modal-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
-</script>
 
+function closeModal(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModalBtn();
+}
+function closeModalBtn() {
+  document.getElementById('modal-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function scrollToRegister() {
+  document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
+}
+
+function handleRegister() {
+  const fname = document.getElementById('fname').value.trim();
+  const lname = document.getElementById('lname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const wa = document.getElementById('whatsapp').value.trim();
+  const profile = document.getElementById('profile').value;
+  const time = document.getElementById('reminder-time').value;
+
+  if (!fname || !email || !wa || !profile) {
+    alert('Please fill in your name, email, WhatsApp number, and lifestyle profile to continue.');
+    return;
+  }
+
+  const profileLabels = {
+    'teen-boy': 'Teen Boy', 'teen-girl': 'Teen Girl',
+    'young-men': 'Young Professional ♂', 'young-women': 'Young Professional ♀',
+    'aged-couple': 'Retired Couple'
+  };
+
+  document.getElementById('form-main').style.display = 'none';
+  const success = document.getElementById('success-msg');
+  document.getElementById('success-name').textContent = `Welcome, ${fname}! 🎉`;
+  document.getElementById('success-detail').textContent = `Your ${profileLabels[profile]} routine is ready. Your first WhatsApp nudge arrives tomorrow at ${time}.`;
+  success.style.display = 'block';
+
+  // WhatsApp welcome link (in production this would trigger actual WA Business API)
+  const waMessage = encodeURIComponent(`Hi DisciplineSelf! I just registered as ${fname} ${lname}. My lifestyle: ${profileLabels[profile]}. Please activate my daily routine reminders at ${time}. 🙏`);
+  setTimeout(() => {
+    window.open(`https://wa.me/919876543210?text=${waMessage}`, '_blank');
+  }, 1200);
+}
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+reveals.forEach(el => obs.observe(el));
+
+// Animate bars on hero load
+window.addEventListener('load', () => {
+  const bars = document.querySelectorAll('.habit-bar-fill');
+  bars.forEach(b => { const w = b.style.width; b.style.width = '0'; setTimeout(() => b.style.width = w, 300); });
+});
+</script>
 </body>
 </html>
