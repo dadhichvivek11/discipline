@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DisciplineSelf | Design Your Life</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f5f7fa;
+}
+
+header {
+    background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 { margin: 0; }
+
+.container {
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+button {
+    padding: 10px 15px;
+    background: #2c5364;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1b3b4a;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.section-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #2c5364;
+}
+
+.footer {
+    text-align: center;
+    padding: 15px;
+    background: #2c5364;
+    color: white;
+}
+
+.highlight {
+    color: #2c5364;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>DisciplineSelf</h1>
+    <p>Design Your Routine. Design Your Life.</p>
+</header>
+
+<div class="container">
+
+<!-- ABOUT -->
+<div class="card">
+    <div class="section-title">Why DisciplineSelf?</div>
+    <p>
+        Build your life through structured discipline:
+        <span class="highlight">Plan Health</span>,
+        <span class="highlight">Plan Life</span>,
+        <span class="highlight">Plan Finance</span>,
+        <span class="highlight">Plan Leisure</span>,
+        <span class="highlight">Serve Society</span>
+    </p>
+</div>
+
+<!-- USER CATEGORY -->
+<div class="card">
+    <div class="section-title">Choose Your Lifestyle</div>
+
+    <select id="userType">
+        <option value="">Select Category</option>
+        <option>Teen (Boy)</option>
+        <option>Teen (Girl)</option>
+        <option>Young Professional (Man)</option>
+        <option>Young Professional (Woman)</option>
+        <option>Retired (Couple)</option>
+    </select>
+</div>
+
+<!-- ROUTINE BUILDER -->
+<div class="card">
+    <div class="section-title">Design Your Daily Routine</div>
+
+    <label>Health Plan</label>
+    <textarea placeholder="Workout, Diet, Sleep..."></textarea>
+
+    <label>Life Goals</label>
+    <textarea placeholder="Career, Learning, Personal Growth..."></textarea>
+
+    <label>Finance Plan</label>
+    <textarea placeholder="Savings, Investments, Budget..."></textarea>
+
+    <label>Leisure Plan</label>
+    <textarea placeholder="Travel, Hobbies, Relaxation..."></textarea>
+
+    <label>Society Contribution</label>
+    <textarea placeholder="Charity, Volunteering, Helping Others..."></textarea>
+
+</div>
+
+<!-- RECOMMENDATIONS -->
+<div class="card">
+    <div class="section-title">Suggested Plans</div>
+
+    <ul>
+        <li><b>Teens:</b> Study discipline, sports, digital detox, skill learning</li>
+        <li><b>Young Professionals:</b> Career growth, financial planning, networking</li>
+        <li><b>Retired Couples:</b> Health care, travel, mentoring, social work</li>
+    </ul>
+</div>
+
+<!-- REGISTRATION -->
+<div class="card">
+    <div class="section-title">Register & Get WhatsApp Routine</div>
+
+    <form onsubmit="sendWhatsApp(); return false;">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="tel" id="phone" placeholder="WhatsApp Number (with country code)" required>
+        <button type="submit">Register & Notify</button>
+    </form>
+</div>
+
+</div>
+
+<div class="footer">
+    © 2026 DisciplineSelf.com | Build Discipline, Build Life
+</div>
+
+<script>
+function sendWhatsApp() {
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+
+    let message = `Hello ${name}, welcome to DisciplineSelf!
+Your daily routine commitment starts today.
+
+Plan:
+Health | Life | Finance | Leisure | Society
+
+Stay Disciplined.`;
+
+    let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
+    window.open(url, '_blank');
+}
+</script>
+
+</body>
+</html>
